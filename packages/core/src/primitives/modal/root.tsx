@@ -45,6 +45,16 @@ export function Root(props: {
     }
   );
 
+  createWatch(
+    () => [state.open] as const,
+    ([open]) => {
+      if (open !== props.open) {
+        props.onOpenChange?.(open);
+      }
+    },
+    { defer: true }
+  );
+
   return (
     <Context.Provider>
       {callMaybeCallableChild(props.children, ...Context.value)}

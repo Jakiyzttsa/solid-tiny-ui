@@ -1,4 +1,4 @@
-import { For, Show } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 import { createStore } from "solid-js/store";
 import { list } from "solid-tiny-utils";
 import { Button, Modal, ModalHelper } from "~";
@@ -12,6 +12,8 @@ export default function TabsPage() {
     longContent: false,
     customStyled: false,
   });
+
+  const [open, setOpen] = createSignal(false);
 
   return (
     <div>
@@ -61,6 +63,28 @@ export default function TabsPage() {
               <ModalHelper.Footer>
                 <ModalHelper.Close>
                   <Button>Cancel</Button>
+                </ModalHelper.Close>
+              </ModalHelper.Footer>
+            </ModalHelper>
+          </Modal.Content>
+        </Modal>
+        <Button
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          Control Modal
+        </Button>
+        <Modal onOpenChange={setOpen} open={open()}>
+          <Modal.Content>
+            <ModalHelper>
+              <ModalHelper.Header title="Controlled Modal" />
+              <ModalHelper.Body>
+                <p>This modal is controlled by external state</p>
+              </ModalHelper.Body>
+              <ModalHelper.Footer>
+                <ModalHelper.Close>
+                  <Button>Close</Button>
                 </ModalHelper.Close>
               </ModalHelper.Footer>
             </ModalHelper>
