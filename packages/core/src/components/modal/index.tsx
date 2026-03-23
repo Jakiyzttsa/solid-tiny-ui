@@ -1,5 +1,5 @@
 import css from "sass:./modal.scss";
-import { createMemo, type JSX } from "solid-js";
+import { createMemo, type JSX, onMount } from "solid-js";
 import {
   combineClass,
   combineStyle,
@@ -11,6 +11,19 @@ import { createClassStyles } from "../../utils";
 import type { ClassNames, Styles } from "../../utils/types";
 
 function Root(props: Parameters<typeof ModalCore>[0]) {
+  onMount(() => {
+    const $preWarm = document.querySelector<HTMLDivElement>(
+      "#tiny-modal-prewarm"
+    );
+    if (!$preWarm) {
+      const div = document.createElement("div");
+      div.id = "tiny-modal-prewarm";
+      const preWarmStyle =
+        "backdrop-filter: blur(10px);position: fixed;width: 0;height: 0;opacity: 0;pointer-events: none;";
+      div.style.cssText = preWarmStyle;
+      document.body.appendChild(div);
+    }
+  });
   return <ModalCore {...props} />;
 }
 
@@ -31,6 +44,7 @@ function Content(props: {
     ["pre-enter", "entering"].includes(presencePhase())
   );
   const isExiting = createMemo(() => ["exiting"].includes(presencePhase()));
+
   return (
     <ModalCore.Portal>
       <ModalCore.Mask
