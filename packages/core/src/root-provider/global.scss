@@ -52,6 +52,14 @@ input[type="number"] {
   outline: none;
 }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 /*
 Please read: https://github.com/unocss/unocss/blob/main/packages/reset/tailwind-compat.md
 */
