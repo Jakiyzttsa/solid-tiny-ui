@@ -1,7 +1,7 @@
 import { createSignal, For, Show } from "solid-js";
 import { createStore } from "solid-js/store";
 import { list } from "solid-tiny-utils";
-import { Button, Modal, ModalHelper } from "~";
+import { Button, Modal, ModalHelper, TextField } from "~";
 import { PlayIt } from "../../../components/play-it";
 
 export default function TabsPage() {
@@ -81,6 +81,7 @@ export default function TabsPage() {
               <ModalHelper.Header title="Controlled Modal" />
               <ModalHelper.Body>
                 <p>This modal is controlled by external state</p>
+                <TextField />
               </ModalHelper.Body>
               <ModalHelper.Footer>
                 <ModalHelper.Close>

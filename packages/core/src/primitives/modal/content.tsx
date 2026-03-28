@@ -11,9 +11,8 @@ export function ContentWrapper(props: ComponentProps<"div">) {
   const [state, actions] = context.useContext();
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    e.preventDefault();
-
     if (e.key === "Escape" && state.closeOnEsc) {
+      e.preventDefault();
       actions.setState("open", false);
     }
 
