@@ -66,9 +66,9 @@
     "tsdown": "catalog:",
     "typescript": "catalog:",
     "unocss": "catalog:",
-    "vite": "^7.1.10",
+    "vite": "^8.0.3",
     "vite-plugin-solid": "^2.11.10",
-    "vite-plugin-solid-pages": "^0.3.0",
+    "vite-plugin-solid-pages": "^0.4.2",
     "vitest": "^4.0.16"
   }
 }
