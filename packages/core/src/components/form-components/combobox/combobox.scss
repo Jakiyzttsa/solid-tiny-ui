@@ -3,7 +3,7 @@
     padding-right: var(--tiny-space-sm);
     border-width: 1px;
     border-style: solid;
-    border-color: rgb(var(--tiny-rgb-neutral-3));
+    border-color: transparent;
     border-radius: var(--tiny-radius-sm);
     transition:
         border-color 150ms,
@@ -12,6 +12,14 @@
     flex-wrap: nowrap;
     position: relative;
     align-items: flex-start;
+
+    &[data-variant="outline"] {
+        border-color: rgb(var(--tiny-rgb-neutral-3));
+
+        &:hover {
+            border-color: rgb(var(--tiny-rgb-neutral-4));
+        }
+    }
 
     &[data-size="small"] {
         height: 24px;
@@ -25,8 +33,7 @@
 
     &:hover,
     &[data-open] {
-        border-color: rgb(var(--tiny-rgb-neutral-4));
-        background: rgb(var(--tiny-rgb-neutral-1) / 0.5);
+        background: rgb(var(--tiny-rgb-neutral-3) / 0.3);
     }
 
     input[readonly] {

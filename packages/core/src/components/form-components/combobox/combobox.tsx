@@ -27,6 +27,7 @@ export interface ComboboxProps<T extends ComboboxOption> {
   onChange?: (value: T["value"]) => void;
   loading?: boolean;
   options: T[];
+  variant?: "outline" | "text";
   classNames?: ClassNames<
     "trigger" | "popoverContent" | "options" | "option" | "suffix",
     {}
@@ -75,13 +76,15 @@ export function Combobox<T extends ComboboxOption>(props: ComboboxProps<T>) {
       {(state, acts) => (
         <>
           <Popover.Trigger>
-            <div
+            <button
               class={combineClass("tiny-combobox__trigger", classes().trigger)}
               data-disabled={dataIf(props.disabled ?? false)}
               data-loading={dataIf(props.loading ?? false)}
               data-open={dataIf(state.open)}
               data-size={props.size ?? "medium"}
+              data-variant={props.variant ?? "outline"}
               style={combineStyle({}, styles().trigger)}
+              type="button"
             >
               <VisuallyHidden>
                 <input
@@ -101,7 +104,7 @@ export function Combobox<T extends ComboboxOption>(props: ComboboxProps<T>) {
                   <SpinRing color="inherit" size={16} />
                 </Show>
               </div>
-            </div>
+            </button>
           </Popover.Trigger>
           <Popover.Content
             class={combineClass("", classes().popoverContent)}

@@ -9,6 +9,7 @@ export default function ComboBoxPage() {
     disabled: false,
     loading: false,
     custom: false,
+    variant: "outline" as "outline" | "text",
   });
 
   return (
@@ -17,6 +18,7 @@ export default function ComboBoxPage() {
       properties={params}
       typeDeclaration={{
         size: ["small", "medium", "large"],
+        variant: ["outline", "text"],
       }}
     >
       <Combobox
@@ -41,6 +43,7 @@ export default function ComboBoxPage() {
             width: "125px",
           },
         }}
+        variant={params.variant}
       />
     </PlayIt>
   );

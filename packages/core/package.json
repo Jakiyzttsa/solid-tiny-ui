@@ -19,6 +19,11 @@
       "solid": "./dist/index.jsx",
       "default": "./dist/index.js"
     },
+    "./primitives": {
+      "types": "./dist/primitives/index.d.ts",
+      "solid": "./dist/primitives/index.jsx",
+      "default": "./dist/primitives/index.js"
+    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.js",
