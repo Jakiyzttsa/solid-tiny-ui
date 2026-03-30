@@ -67,7 +67,10 @@
 }
 
 .tiny-combobox__suffix {
-    align-self: center;
+    margin-left: 8px;
+    width: 16px;
+    position: relative;
+    height: 100%;
     display: flex;
     align-items: center;
     color: var(--tiny-c-text-label);

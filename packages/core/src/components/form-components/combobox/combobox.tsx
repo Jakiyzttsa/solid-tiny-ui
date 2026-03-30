@@ -100,7 +100,18 @@ export function Combobox<T extends ComboboxOption>(props: ComboboxProps<T>) {
                 class="tiny-combobox__suffix"
                 style={combineStyle({}, styles().suffix)}
               >
-                <Show fallback={<ArrowDownSLine />} when={props.loading}>
+                <Show
+                  fallback={
+                    <div
+                      style={{
+                        "margin-top": "2px",
+                      }}
+                    >
+                      <ArrowDownSLine />
+                    </div>
+                  }
+                  when={props.loading}
+                >
                   <SpinRing color="inherit" size={16} />
                 </Show>
               </div>
