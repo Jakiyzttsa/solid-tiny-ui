@@ -79,6 +79,7 @@ export function Combobox<T extends ComboboxOption>(props: ComboboxProps<T>) {
             <button
               class={combineClass("tiny-combobox__trigger", classes().trigger)}
               data-disabled={dataIf(props.disabled ?? false)}
+              data-empty={dataIf(!label())}
               data-loading={dataIf(props.loading ?? false)}
               data-open={dataIf(state.open)}
               data-size={props.size ?? "medium"}

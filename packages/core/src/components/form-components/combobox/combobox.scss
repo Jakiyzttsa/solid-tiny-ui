@@ -57,6 +57,10 @@
         user-select: none;
         opacity: 0.7;
     }
+
+    &[data-empty] {
+        color: var(--tiny-c-text-description);
+    }
 }
 
 .tiny-combobox__label {
