@@ -1,0 +1,14 @@
+.tiny-date-input {
+    display: inline-flex;
+    align-items: center;
+}
+
+.tiny-date-input__btn {
+    cursor: text;
+    padding: 0 2px;
+
+    &:focus {
+        background: rgb(var(--tiny-rgb-brand-5));
+        color: white;
+    }
+}

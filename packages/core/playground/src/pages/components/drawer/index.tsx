@@ -43,7 +43,9 @@ export default function DrawerPage() {
                     <p>
                       This is drawer content{" "}
                       <Button
-                        onClick={() => toast("This is a toaster message!")}
+                        onClick={() => {
+                          toast("This is a toaster message!");
+                        }}
                         size="small"
                         variant="outline"
                       >
