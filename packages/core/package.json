@@ -58,17 +58,17 @@
     "@iconify-json/ri": "^1.2.6",
     "@solid-primitives/keyed": "^1.5.2",
     "@solid-tiny-ui/unocss-preset": "workspace:*",
-    "@solidjs/router": "^0.15.4",
+    "@solidjs/router": "^0.16.1",
     "@solidjs/testing-library": "^0.8.10",
-    "@vitest/browser-playwright": "^4.0.16",
+    "@vitest/browser-playwright": "^4.1.2",
     "rolldown-plugin-solid": "^0.2.1",
     "rollup-plugin-inline-import": "^0.3.0",
     "tsdown": "catalog:",
     "typescript": "catalog:",
     "unocss": "catalog:",
     "vite": "^8.0.3",
-    "vite-plugin-solid": "^2.11.10",
+    "vite-plugin-solid": "^2.11.11",
     "vite-plugin-solid-pages": "^0.4.2",
-    "vitest": "^4.0.16"
+    "vitest": "^4.1.2"
   }
 }

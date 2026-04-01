@@ -23,7 +23,9 @@ export default defineConfig({
     IS_DEV: "true",
   },
   plugins: [
-    UnoCSS(),
+    UnoCSS({
+      configFile: path.resolve(__dirname, "./uno.config.ts"),
+    }),
     inline(),
     solidPlugin(),
     solidPagesPlugin({

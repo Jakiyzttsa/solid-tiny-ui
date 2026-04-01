@@ -63,11 +63,10 @@
 }
 
 .tiny-drawer__mask {
-    background: rgb(0 0 0 / 10%);
+    background: rgb(0 0 0 / 35%);
     animation-duration: 200ms;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
-    backdrop-filter: blur(4px);
 
     &[data-entering] {
         animation-name: tiny-mask-in;
@@ -77,10 +76,6 @@
         animation-name: tiny-mask-in;
         animation-direction: reverse;
     }
-}
-
-.dark .tiny-drawer__mask {
-    background: rgb(0 0 0 / 30%);
 }
 
 @keyframes tiny-drawer-in-out {
@@ -96,11 +91,9 @@
 @keyframes tiny-mask-in {
     0% {
         opacity: 0;
-        backdrop-filter: blur(0);
     }
 
     100% {
         opacity: 1;
-        backdrop-filter: blur(4px);
     }
 }
