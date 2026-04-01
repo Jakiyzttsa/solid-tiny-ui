@@ -34,14 +34,27 @@ export function DateInput(props: {
       case "year":
         return clamp(val, 0, 9999);
       case "month":
-        return clamp(val, 1, 12);
+        if (val < 1) {
+          return 12;
+        }
+        if (val > 12) {
+          return 1;
+        }
+        return val;
       case "day": {
         const daysInMonth = new Date(
           internalDate.year,
           internalDate.month,
           0
         ).getDate();
-        return clamp(val, 1, daysInMonth);
+
+        if (val < 1) {
+          return daysInMonth;
+        }
+        if (val > daysInMonth) {
+          return 1;
+        }
+        return val;
       }
       default:
         return val;
