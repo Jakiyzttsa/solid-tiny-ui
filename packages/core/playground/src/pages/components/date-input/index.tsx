@@ -4,9 +4,12 @@ import { DateInput } from "../../../../../src/components/form-components/date-in
 import { PlayIt } from "../../../components/play-it";
 
 export default function DateInputPage() {
-  const [params, setParams] = createStore({});
+  const [params, setParams] = createStore({
+    type: "date" as const,
+    size: "medium" as "small" | "medium" | "large",
+  });
 
-  const [date, setDate] = createSignal(Date.now());
+  const [date, setDate] = createSignal(new Date().toISOString());
 
   return (
     <div>
@@ -14,10 +17,16 @@ export default function DateInputPage() {
         onChange={setParams}
         properties={params}
         typeDeclaration={{
-          placement: ["left", "right", "top", "bottom"],
+          type: ["date", "datetime-local"],
+          size: ["small", "medium", "large"],
         }}
       >
-        <DateInput date={date()} onChange={setDate} />
+        <DateInput
+          onChange={setDate}
+          size={params.size}
+          type={params.type}
+          value={date()}
+        />
         date: {date()}
       </PlayIt>
     </div>

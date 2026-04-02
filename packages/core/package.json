@@ -52,7 +52,7 @@
     "@solid-primitives/refs": "catalog:",
     "solid-tiny-context": "catalog:",
     "solid-tiny-utils": "catalog:",
-    "time-core": "^0.1.0"
+    "time-core": "^0.2.0"
   },
   "devDependencies": {
     "@iconify-json/ri": "^1.2.6",

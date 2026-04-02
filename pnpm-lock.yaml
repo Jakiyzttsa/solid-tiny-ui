@@ -118,8 +118,8 @@ importers:
         specifier: 'catalog:'
         version: 0.12.0(solid-js@1.9.10)
       time-core:
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.2.0
+        version: 0.2.0
     devDependencies:
       '@iconify-json/ri':
         specifier: ^1.2.6
@@ -3586,8 +3586,8 @@ packages:
   text-decoder@1.2.3:
     resolution: {integrity: sha512-3/o9z3X0X0fTupwsYvR03pJ/DjWuqqrfwBgTQzdWDiQSm9KitAyz/9WqsT2JQW7KV2m+bC2ol/zqpW37NHxLaA==}
 
-  time-core@0.1.0:
-    resolution: {integrity: sha512-EVmbeKANGi+RmQUr87i4nFeyepiHTAWPF5M2LN5+u2TUIh/mKD7LVaEPNRgtqhBATU5dUHwyOS3ETW3m5ZMmHQ==}
+  time-core@0.2.0:
+    resolution: {integrity: sha512-WP+ggOmxmhnfMhvQdHKIdUbDPL4uRHt7L8nBy9+cGdf4DvrTR10SjbVbQB7Z1qXJRgRYNXpGR8+Ljn8h0s1rbg==}
 
   tiny-invariant@1.3.3:
     resolution: {integrity: sha512-+FbBPE1o9QAYvviau/qC5SE3caw21q3xkvWKBtja5vgqOWIHHJ3ioaq1VPfn/Szqctz2bU/oYeKd9/z5BL+PVg==}
@@ -7471,7 +7471,7 @@ snapshots:
     transitivePeerDependencies:
       - react-native-b4a
 
-  time-core@0.1.0: {}
+  time-core@0.2.0: {}
 
   tiny-invariant@1.3.3: {}
 
