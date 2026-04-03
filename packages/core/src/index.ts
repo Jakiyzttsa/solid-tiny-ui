@@ -1,5 +1,6 @@
 export * from "./components/alert";
 export * from "./components/button";
+export * from "./components/calendar";
 export * from "./components/drawer";
 export * from "./components/field";
 export * from "./components/form-components";

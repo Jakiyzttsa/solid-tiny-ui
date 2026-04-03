@@ -1,6 +1,7 @@
 export * from "./checkbox";
 export * from "./checkbox-group";
 export * from "./combobox";
+export * from "./date-input";
 export * from "./number-input";
 export * from "./password-input";
 export * from "./radio-group";

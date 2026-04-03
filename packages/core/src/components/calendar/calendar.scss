@@ -1,0 +1,25 @@
+.tiny-calendar__main-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.tiny-calendar__a-line {
+    display: flex;
+}
+
+.tiny-calendar__a-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+
+    &[data-current] {
+        background-color: rgb(var(--tiny-rgb-brand-5));
+        color: #fff;
+        border-radius: 50%;
+    }
+
+    &[data-current-month] {
+        opacity: 1;
+    }
+}
