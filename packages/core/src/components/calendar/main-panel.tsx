@@ -1,4 +1,4 @@
-import { createMemo, For, onMount } from "solid-js";
+import { createMemo, For } from "solid-js";
 import { createStore } from "solid-js/store";
 import {
   clamp,
@@ -31,8 +31,9 @@ export function MainPanel(props: {
     year: 0,
     month: 0,
     wheelIndex: 0,
+    noTransition: false,
+    isRepositioning: false,
   });
-  let ref!: HTMLDivElement;
 
   createWatch(
     () => [props.year, props.month],
@@ -43,12 +44,6 @@ export function MainPanel(props: {
     }
   );
 
-  onMount(() => {
-    runAtNextAnimationFrame(() => {
-      ref.style.transition = "transform 150ms ease-out";
-    });
-  });
-
   const dateLines = createMemo(() => {
     return list(padding * 2)
       .map((v) => addWeeks([$inter.year, $inter.month, 1], -padding + v))
@@ -57,61 +52,83 @@ export function MainPanel(props: {
 
   const maxWheelIndex = createMemo(() => dateLines().length - visibleRowsCount);
 
-  const handleWheel = (e: WheelEvent) => {
-    e.preventDefault();
-
-    set$inter("wheelIndex", (prev) =>
-      clamp(prev + Math.sign(e.deltaY), 1, maxWheelIndex())
-    );
+  const makeDateLines = (year: number, month: number) => {
+    return list(padding * 2)
+      .map((v) => addWeeks([year, month, 1], -padding + v))
+      .map((d) => getThisWeekDates(d));
   };
 
-  const checkPos = () => {
+  const shiftMonthAndGetAnchorIndex = (offset: number, anchorDate?: Date) => {
+    const newD = addMonths([$inter.year, $inter.month, 1], offset);
+    const nextYear = getYear(newD);
+    const nextMonth = getMonth(newD);
+    const nextLines = makeDateLines(nextYear, nextMonth);
+
+    const nextAnchorIndex = anchorDate
+      ? nextLines.findIndex((line) => isSameDate(line[0], anchorDate))
+      : -1;
+
+    set$inter({
+      year: nextYear,
+      month: nextMonth,
+    });
+    props.onYearMonthChange(nextYear, nextMonth);
+
+    return nextAnchorIndex >= 0 ? nextAnchorIndex : padding;
+  };
+
+  const handleWheel = (e: WheelEvent) => {
+    e.preventDefault();
+    if ($inter.isRepositioning) {
+      return;
+    }
+
+    const direction = Math.sign(e.deltaY);
+    if (!direction) {
+      return;
+    }
+
     const index = $inter.wheelIndex;
     const lines = dateLines();
+    const maxIndex = maxWheelIndex();
 
-    const shiftMonthAndResetIndex = (offset: number) => {
-      // Keep the visible week stable when swapping month data at the edge.
-      const anchorDate = lines[index]?.[0];
-      const newD = addMonths([$inter.year, $inter.month, 1], offset);
-      const nextYear = getYear(newD);
-      const nextMonth = getMonth(newD);
-      set$inter({
-        year: nextYear,
-        month: nextMonth,
-      });
-      const nextLines = dateLines();
+    let baseIndex = index;
+    let hitBoundary = false;
 
-      const nextIndex = anchorDate
-        ? nextLines.findIndex((line) => isSameDate(line[0], anchorDate))
-        : -1;
-
-      set$inter({
-        wheelIndex: nextIndex >= 0 ? nextIndex : padding,
-      });
-      props.onYearMonthChange(nextYear, nextMonth);
-    };
-
-    if (index === 1) {
-      ref.style.transition = "none";
-      shiftMonthAndResetIndex(-1);
-
-      runAtNextAnimationFrame(() => {
-        ref.style.transition = "transform 150ms ease-out";
-      });
+    if (direction < 0 && index === 4) {
+      baseIndex = shiftMonthAndGetAnchorIndex(-1, lines[index]?.[0]);
+      hitBoundary = true;
     }
 
-    if (index === maxWheelIndex()) {
-      ref.style.transition = "none";
-      shiftMonthAndResetIndex(1);
-      runAtNextAnimationFrame(() => {
-        ref.style.transition = "transform 150ms ease-out";
-      });
+    if (direction > 0 && index === maxIndex) {
+      baseIndex = shiftMonthAndGetAnchorIndex(1, lines[index]?.[0]);
+      hitBoundary = true;
     }
+
+    if (hitBoundary) {
+      set$inter({
+        isRepositioning: true,
+        noTransition: true,
+        wheelIndex: baseIndex,
+      });
+
+      runAtNextAnimationFrame(() => {
+        set$inter({
+          noTransition: false,
+          wheelIndex: clamp(baseIndex + direction, 4, maxWheelIndex()),
+          isRepositioning: false,
+        });
+      });
+      return;
+    }
+
+    set$inter("wheelIndex", (prev) =>
+      clamp((prev === index ? baseIndex : prev) + direction, 4, maxWheelIndex())
+    );
   };
 
   return (
     <div
-      onTransitionEnd={checkPos}
       onWheel={handleWheel}
       style={{
         width: `${7 * rowHeight}px`,
@@ -122,9 +139,11 @@ export function MainPanel(props: {
     >
       <div
         class="tiny-calendar__main-panel"
-        ref={ref}
         style={{
           transform: `translate3d(0, ${$inter.wheelIndex * -rowHeight}px, 0)`,
+          transition: $inter.noTransition
+            ? "none"
+            : "transform 250ms cubic-bezier(0.22, 1, 0.36, 1)",
           "will-change": "transform",
         }}
       >

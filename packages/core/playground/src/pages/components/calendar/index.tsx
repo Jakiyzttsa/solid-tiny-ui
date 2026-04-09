@@ -7,9 +7,22 @@ export default function CalendarPage() {
     disabled: false,
   });
 
+  const [d, setD] = createStore({
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+    current: new Date(),
+  });
+
   return (
     <PlayIt onChange={setParams} properties={params} typeDeclaration={{}}>
-      <Calendar />
+      <div>
+        <div>Year: {d.year}</div>
+        <div>Month: {d.month}</div>
+      </div>
+      <Calendar
+        current={d.current}
+        onYearMonthChange={(year, month) => setD({ year, month })}
+      />
     </PlayIt>
   );
 }

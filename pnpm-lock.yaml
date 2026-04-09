@@ -161,8 +161,8 @@ importers:
         specifier: ^2.11.11
         version: 2.11.11(solid-js@1.9.10)(vite@8.0.3(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))
       vite-plugin-solid-pages:
-        specifier: ^0.4.2
-        version: 0.4.2(@solidjs/router@0.16.1(solid-js@1.9.10))(vite@8.0.3(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))
+        specifier: ^0.4.3
+        version: 0.4.3(@solidjs/router@0.16.1(solid-js@1.9.10))(vite@8.0.3(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))
       vitest:
         specifier: ^4.1.2
         version: 4.1.2(@types/node@25.0.3)(@vitest/browser-playwright@4.1.2)(happy-dom@20.0.11)(jsdom@27.4.0)(vite@8.0.3(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2))
@@ -3911,8 +3911,8 @@ packages:
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
 
-  vite-plugin-solid-pages@0.4.2:
-    resolution: {integrity: sha512-lzLyvUQwjLo20isbgAYOfCcAmDOCPCCw9ZjM1mYd73xSC5eu6yvRkIW6av4z68KPLeSr9VzMMoMqQkw0qe7oYA==}
+  vite-plugin-solid-pages@0.4.3:
+    resolution: {integrity: sha512-YhCI8yuY0Fce2+WPdYwcpeYSuRBgfRnc8YIqUR9frJUB6UqYOtXKTODpuex16/7jkh3/8NCvtJmI1f71u2YzsA==}
     peerDependencies:
       '@solidjs/router': ^0.16.1
       vite: ^7.0.0 || ^8.0.0
@@ -7762,7 +7762,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite-plugin-solid-pages@0.4.2(@solidjs/router@0.16.1(solid-js@1.9.10))(vite@8.0.3(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2)):
+  vite-plugin-solid-pages@0.4.3(@solidjs/router@0.16.1(solid-js@1.9.10))(vite@8.0.3(@types/node@25.0.3)(esbuild@0.27.2)(jiti@2.6.1)(sass@1.97.0)(terser@5.44.1)(yaml@2.8.2)):
     dependencies:
       '@solidjs/router': 0.16.1(solid-js@1.9.10)
       '@swc/core': 1.15.21
