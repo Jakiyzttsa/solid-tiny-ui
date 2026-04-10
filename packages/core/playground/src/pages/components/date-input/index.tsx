@@ -17,7 +17,7 @@ export default function DateInputPage() {
         onChange={setParams}
         properties={params}
         typeDeclaration={{
-          type: ["date", "datetime-local"],
+          type: ["date", "datetime-local", "month"],
           size: ["small", "medium", "large"],
         }}
       >

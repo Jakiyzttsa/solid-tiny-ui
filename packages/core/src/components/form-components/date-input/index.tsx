@@ -99,7 +99,7 @@ const getNextField = (field: DateFields): DateFields | null => {
  */
 export function DateInput(props: {
   value: DateArgs;
-  type?: "date" | "datetime-local";
+  type?: "date" | "datetime-local" | "month";
   size?: "small" | "medium" | "large";
   invalid?: boolean;
   onChange: (date: string) => void;
@@ -151,6 +151,9 @@ export function DateInput(props: {
   const isFieldAvailable = (field: DateFields) => {
     if (field === "hour" || field === "minute" || field === "second") {
       return props.type === "datetime-local";
+    }
+    if (field === "day") {
+      return props.type !== "month";
     }
     return true;
   };
@@ -240,9 +243,12 @@ export function DateInput(props: {
   createDebouncedWatch(
     () => [{ ...internalDate }, props.type] as const,
     ([date, t]) => {
-      let result = `${pad(date.year, 4)}-${pad(date.month)}-${pad(date.day)}`;
+      let result = `${pad(date.year, 4)}-${pad(date.month)}`;
       if (t === "datetime-local") {
-        result += `T${pad(date.hour)}:${pad(date.minute)}:${pad(date.second)}`;
+        result += `-${pad(date.day)}T${pad(date.hour)}:${pad(date.minute)}:${pad(date.second)}`;
+      }
+      if (t === "date") {
+        result += `-${pad(date.day)}`;
       }
       if (result !== props.value) {
         props.onChange(result);
@@ -281,8 +287,10 @@ export function DateInput(props: {
       <Holder field="year" />
       <span>/</span>
       <Holder field="month" />
-      <span>/</span>
-      <Holder field="day" />
+      <Show when={props.type !== "month"}>
+        <span>/</span>
+        <Holder field="day" />
+      </Show>
 
       <Show when={props.type === "datetime-local"}>
         <span>&nbsp;</span>
